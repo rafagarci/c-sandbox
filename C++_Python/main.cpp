@@ -1,5 +1,6 @@
 // Compiled with:
 // g++-11 -fPIC -shared -o main.so main.cpp
+// gcc-11 main.cpp -o main
 // x86_64 i386
 
 #include <iostream>
@@ -17,12 +18,12 @@ bool check(const char *token){
 
 int main(const int argc, const char *argv[]){
 
-    if(check(argv[0]))
+    if(check(argv[1]))
         cout << "token checked\n";
     else
         cout << "invalid token\n";
 
-    if(check(argv[1]))
+    if(check(argv[2]))
         cout << "token checked\n";
     else
         cout << "invalid token\n";
