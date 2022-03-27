@@ -1,11 +1,15 @@
 # Shows how it is possible to call a C++ compiled function
 # through python
 
-from ctypes import CDLL, c_char_p
+import ctypes
 
-handle = CDLL("./main.so")
-password = c_char_p(b"password")
-password2 = c_char_p(b"Incorrect password")
+# Links external library
+handle = ctypes.CDLL("./main.so")
 
-handle.main(password)
-handle.main(password2)
+# Creates an array of pointers of type c_char_p
+argsmaker = ctypes.c_char_p * 2 
+args = argsmaker(b"password", b"wrong_password")
+
+# Checks if inputs are correct and calls function
+handle.main.argtypes = [ctypes.c_int, argsmaker]
+handle.main(2, args)

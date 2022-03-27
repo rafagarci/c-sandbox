@@ -7,7 +7,6 @@
 
 using namespace std;
 
-// Check token
 bool check(const char *token){
     string token_s = string(token);
     if(token_s.compare("password") == 0)
@@ -16,12 +15,17 @@ bool check(const char *token){
         return false;
 }
 
-// Changed signature to make the python
-// script find the function name easily
-int main(const char *argv){
-    if(check(argv))
+int main(const int argc, const char *argv[]){
+
+    if(check(argv[0]))
         cout << "token checked\n";
     else
         cout << "invalid token\n";
+
+    if(check(argv[1]))
+        cout << "token checked\n";
+    else
+        cout << "invalid token\n";
+
     return 0;
 }
